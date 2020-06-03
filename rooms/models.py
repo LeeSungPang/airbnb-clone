@@ -4,8 +4,7 @@ from core import models as core_models
 
 
 class AbstractItem(core_models.TimeStampeModel):
-
-    """ Abstract Item"""
+    """ Abstract Item """
 
     name = models.CharField(max_length=80)
 
@@ -14,6 +13,14 @@ class AbstractItem(core_models.TimeStampeModel):
 
     def __str__(self):
         return self.name
+
+
+class RoomType(AbstractItem):
+
+    """ RoomType Model Definition """
+
+    class Meta:
+        verbose_name = "Room Type"
 
 
 class Amenity(AbstractItem):
@@ -25,11 +32,12 @@ class Amenity(AbstractItem):
 
 
 class Facility(AbstractItem):
-
     """ Facility Model Definition """
 
+    pass
+
     class Meta:
-        verbose_name_plural = "Facility"
+        verbose_name_plural = "Facilities"
 
 
 class HouseRule(AbstractItem):
@@ -37,19 +45,12 @@ class HouseRule(AbstractItem):
     """ HouseRule Model Definition """
 
     class Meta:
-        verbose_name_plural = "House Rule"
-
-
-class RoomType(AbstractItem):
-
-    """ Room Type Definition"""
-
-    class Meta:
-        verbose_name_plural = "Room Type"
+        verbose_name = "House Rule"
 
 
 class Photo(core_models.TimeStampeModel):
-    """"Photo Mopdel Definition"""
+
+    """ Photo Model Definition """
 
     caption = models.CharField(max_length=80)
     file = models.ImageField()
@@ -60,14 +61,14 @@ class Photo(core_models.TimeStampeModel):
 
 
 class Room(core_models.TimeStampeModel):
-    """" Room Model Definition"""
+    """ Room Model Definition """
 
     name = models.CharField(max_length=140)
     description = models.TextField()
     country = CountryField()
     city = models.CharField(max_length=80)
     price = models.IntegerField()
-    adress = models.CharField(max_length=140)
+    address = models.CharField(max_length=140)
     guests = models.IntegerField()
     beds = models.IntegerField()
     bedrooms = models.IntegerField()
